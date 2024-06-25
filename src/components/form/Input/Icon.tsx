@@ -7,8 +7,9 @@ type IconProps = ComponentProps<'span'> & {
 export function Icon({ icon: Icon, ...props }: IconProps) {
            //DollarSign
   return (
-    <span {...props}>
-        <Icon className="size-4 m-2" />
+    <span {...props} className='flex'>
+        <Icon className="size-5 m-2" />
+        <span className='border-r border-zinc-300 pr-2' />
     </span>
   )
 }

@@ -32,20 +32,22 @@ export function EventsProviders({ children }: EventsProvidersProps) {
           localStorage.setItem('events',JSON.stringify([...events, newEvents]))
       }
       const onCreateInvited = (newInvite: InviteProps ) => {
-    
-        const { eventID } = newInvite
-    
-        const result = events.map((event) =>
-          event.id === eventID
-            ? {
+        const { eventID } = newInvite    
+        const result = events.map((event) => {
+          if (event.id === eventID) {
+            const emailExists = event.invite.some((item) => item.email === newInvite.email);
+            if (!emailExists) {
+              return {
                 ...event,
-                invite: [...(event.invite || []), newInvite], 
-              }
-            : event
-        )
-    
+                invite: [...(event.invite || []), newInvite],
+              };
+            }
+          }
+          return event;
+        });
+        
         setEvents(result);
-        localStorage.setItem('events',JSON.stringify([...events]))
+        localStorage.setItem('events',JSON.stringify([...result]))
     }
 
   return (

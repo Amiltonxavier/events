@@ -25,6 +25,7 @@ export type Events = {
     amount: number,
     invite: Invite[],
     createdAt: Date,
+    durantion: Date
 }
 
 export type InviteProps = Invite & {

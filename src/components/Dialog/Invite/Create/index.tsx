@@ -3,12 +3,15 @@ import { Dialog } from "../..";
 import * as Input from "../../../form/Input";
 import { Root } from "../../../form/Root";
 import { Label } from "../../../form/Label";
-import { Phone, Users } from "lucide-react";
+import { AtSign, Phone, Users } from "lucide-react";
 import { FormEvent } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { useEvents } from "../../../../context";
 import { Button } from "../../../form/Button";
-import {  } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
+import { InviteSchema, InviteSchemaDTO } from "../../../../Schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "react-toastify";
 
 
 type DiologCreatEvetnsProps = {
@@ -22,10 +25,15 @@ export function DiologCreatInvited({ onClose, eventID }: DiologCreatEvetnsProps)
 
   const { onCreateInvited } = useEvents()
 
+  const { register, handleSubmit, formState: {errors} } = useForm<InviteSchemaDTO>({
+    resolver: zodResolver(InviteSchema)
+  })
+
   const onSubimt = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
+  //  if(formData.get('email')?.toString().length > 0) return  toast("Erro ao Cadastrar")
     const newData = {
       id: uuidv4() as string,
       eventID: eventID,
@@ -46,12 +54,12 @@ export function DiologCreatInvited({ onClose, eventID }: DiologCreatEvetnsProps)
           <Root>
             <Label className="text-gray-100">E-mail</Label>
             <Input.Wrapper>
+            <Input.Icon icon={AtSign} className="" />
               <Input.Control
                 type="email"
-                name="email"
                 id="email"
                 placeholder="johndue@domain.com"
-                className="focus-within:ring-2 ring-blue-500"
+                {...register('email')}
               />
             </Input.Wrapper>
           </Root>
@@ -66,10 +74,9 @@ export function DiologCreatInvited({ onClose, eventID }: DiologCreatEvetnsProps)
                 minLength={1}
                 max={3}
                 maxLength={3}
-                name="amount"
                 id="amount"
                 placeholder="Valor de entrada"
-                className=""
+                {...register('amount')}
               />
             </Input.Wrapper>
           </Root>
@@ -79,10 +86,11 @@ export function DiologCreatInvited({ onClose, eventID }: DiologCreatEvetnsProps)
               <Input.Icon icon={Phone} />
               <Input.Control
                 type="tel"
-                name="phone"
                 id="phone"
-                placeholder="Telefone"
-                className=""
+                pattern="[0-9]{3} [0-9]{3} [0-9]{3}"
+                maxLength={12}
+                placeholder="000 000 000"
+                {...register('phone')}
               />
             </Input.Wrapper>
           </Root>

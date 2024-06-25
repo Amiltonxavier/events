@@ -5,10 +5,13 @@ import { Root } from "../../../form/Root";
 import { Label } from "../../../form/Label";
 import { MapPin, Users } from "lucide-react";
 import { CONSTANTS } from "../../../../constants";
-import { FormEvent, useState } from "react";
+import { FormEvent } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { Events, EVENTSTYPES } from "../../../../type";
 import { Button } from "../../../form/Button";
+
+
+
 type DiologCreatEvetnsProps = {
   onClose: () => void
   onCreateEvents: (newEvents: Events) => void
@@ -17,10 +20,11 @@ type DiologCreatEvetnsProps = {
 
 
 export function DiologCreatEvetns({ onClose, onCreateEvents }: DiologCreatEvetnsProps) {
-  const [isLoading, setIsLoading] = useState(false)
+
+//  const { register, handleSubmit } = useForm()
   const onSubimt = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsLoading(true)
+
     const formData = new FormData(e.currentTarget);
     const newData = {
       id: (`${formData.get("title")}-${uuidv4()}-${formData.get("type")}`).replace(/\s+/g, ''),
@@ -31,10 +35,10 @@ export function DiologCreatEvetns({ onClose, onCreateEvents }: DiologCreatEvetns
       code: Math.round(Math.random() * 10000).toString(),
       invite: [],
       amount: Number(formData.get("amount")) as number,
+      durantion: new Date(formData.get("durantion") as string),
       createdAt: new Date()
     }
     onCreateEvents(newData)
-    setIsLoading(false)
     onClose()
   }
 
@@ -82,18 +86,6 @@ export function DiologCreatEvetns({ onClose, onCreateEvents }: DiologCreatEvetns
               </Input.Wrapper>
             </Root>
             <Root>
-              <Label>Data do Evento</Label>
-              <Input.Wrapper>
-                <Input.Control
-                  type="datetime-local"
-                  name="date"
-                  id="date"
-                  placeholder="Data do Evento"
-                />
-              </Input.Wrapper>
-            </Root>
-          </div>
-          <Root>
             <Label>Local do Evento</Label>
             <Input.Wrapper>
               <Input.Icon icon={MapPin} />
@@ -104,6 +96,31 @@ export function DiologCreatEvetns({ onClose, onCreateEvents }: DiologCreatEvetns
               />
             </Input.Wrapper>
           </Root>
+          </div>
+          <div className="grid grid-cols-2 gap-2">
+          <Root>
+              <Label>Data do Evento</Label>
+              <Input.Wrapper>
+                <Input.Control
+                  type="datetime-local"
+                  name="date"
+                  id="date"
+                  placeholder="Data do Evento"
+                />
+              </Input.Wrapper>
+            </Root>
+            <Root>
+              <Label>Termino do Evento</Label>
+              <Input.Wrapper>
+                <Input.Control
+                  type="datetime-local"
+                  name="durantion"
+                  id="durantion"
+                  placeholder="Termino"
+                />
+              </Input.Wrapper>
+            </Root>
+          </div>
           <div className="mt-4">
             <Button>  
                  Criar um Novo Evento

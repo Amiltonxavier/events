@@ -1,7 +1,7 @@
 import { z } from 'zod'
 
 
-const Events = z.object({
+/* const Events = z.object({
     id: z.string().uuid({ message: "Invalid UUID" }),
     title: z.string().trim(),
     local: z.string().trim(),
@@ -11,15 +11,15 @@ const Events = z.object({
     amount: z.number(),
     invite: Invite[],
     createdAt: z.date(),
-})
+}) */
 
-const Invite = z.object({
+export const InviteSchema = z.object({
     id: z.string().uuid({ message: "Invalid UUID" }),
     email: z.string().email().nonempty("E-mail é um campo obrigatório"),
     amount: z.number().min(1, {message: 'Mínimo de pessoas em um convite 3'}).max(3, {message: 'Máximo de pessoas em um convite 3'}),
-    phone?: z.string(),
+    phone: z.string().optional(),
     createdAt: z.string().datetime(),
     eventID: z.string().uuid({ message: "Invalid UUID" })
 });
 
-export type InviteSchemaDTO = z.infer<typeof Invite>
+export type InviteSchemaDTO = z.infer<typeof InviteSchema>
