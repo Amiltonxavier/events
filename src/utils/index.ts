@@ -1,3 +1,4 @@
+import { Events } from "../type";
 
 
 export class Formatter {
@@ -14,4 +15,20 @@ export class Formatter {
         return this.date.format(formateAnyValue);
     }
 
+}
+
+export class Total {
+
+    TotalEvent(events: Events[]){
+        return events.length
+    }
+
+    TotalOfFinally(events: Events[]){
+        return events.reduce((acc, curr) => {
+            if (new Date(curr.date).getTime() < new Date().getTime()) {
+                acc += 1;
+            }
+            return acc;
+        }, 0); 
+    }
 }

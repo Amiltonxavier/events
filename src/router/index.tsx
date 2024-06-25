@@ -6,15 +6,9 @@ export const router = Browser([
     {
       path: "/",
       element: <Dashboard />,
-      children: [
-        {
-            path: "/events",
-            element: <Invited />
-        }
-      ]
     },
     {
-        path: "/events/:id",
-        element: <Invited />
+      path: "/events/:id",
+      element: <Invited />
     }
   ]);

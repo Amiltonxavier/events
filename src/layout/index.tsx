@@ -6,7 +6,7 @@ type LayoutProps = ComponentProps<'main'> & {
 
 export function Layout({children}: LayoutProps) {
   return (
-    <main className='w-full min-h-screen bg-slate-900'>
+    <main className='w-full min-h-screen bg-gray-200 text-zinc-800'>
         <div className="w-full flex flex-col gap-4">
             {children}
         </div>

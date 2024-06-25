@@ -5,6 +5,6 @@ type RootProps = ComponentProps<'div'>
 
 export function Root({...props}: RootProps) {
   return (
-    <div {...props} className={twMerge("flex justify-between px-4 py-3 sm:py-8 bg-zinc-700 rounded", props.className)} />
+    <div {...props} className={twMerge("flex justify-between px-4 py-3 sm:py-8 bg-white rounded", props.className)} />
   )
 }

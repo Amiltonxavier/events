@@ -4,6 +4,6 @@ interface TableHeaderProps extends ComponentProps<"th"> {}
 
 export function TableHeader(props: TableHeaderProps) {
   return (
-    <th className="py-3 px-4 text-sm font-semibold text-left text-gray-100" {...props} />
+    <th className="py-3 px-4 text-sm font-semibold text-left text-zinc-500" {...props} />
   );
 }

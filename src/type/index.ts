@@ -1,6 +1,7 @@
 export enum EVENTSTYPES {
     CASAMENTO= 'casamento',
     FESTA = 'festa',
+    WORKSHOP = 'WORKSHOP',
     OUTROS =  'outros'
     
 }
@@ -10,7 +11,8 @@ export type Invite = {
     email: string,
     amount: number
     phone?: string,
-    createdAt: Date
+    createdAt: Date,
+    eventID: string
 }
 
 export type Events = {
@@ -24,3 +26,7 @@ export type Events = {
     invite: Invite[],
     createdAt: Date,
 }
+
+export type InviteProps = Invite & {
+    eventID: string
+  }

@@ -1,5 +1,5 @@
-import { Dialog } from "..";
-import { Events } from "../../../type";
+import { Dialog } from "../../";
+import { Events } from "../../../../type";
 
 
 
