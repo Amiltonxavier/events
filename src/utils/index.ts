@@ -22,21 +22,22 @@ export class TotalEvents {
 
   TotalOfFinally(events: Events[]) {
     return events.reduce((acc, curr) => {
-      if (new Date(curr.date).getTime() < new Date().getTime()) {
+      if (new Date(curr.date).getTime() < new Date().getTime() && new Date(curr.durantion).getTime() < new Date().getTime()) {
         acc += 1;
       }
       return acc;
     }, 0);
   }
 
-  /* totalOfPending(events: Events) {
-    return events.reduce((acc, curr) => {
-        if (new Date(curr.date).getTime() < new Date().getTime()) {
+  TotalOfPending(events: Events[]){
+
+      return events.reduce((acc, curr) => {
+        if (new Date(curr.date).getTime() > new Date().getTime()) {
           acc += 1;
         }
         return acc;
       }, 0);
-  } */
+  }
 }
 
 export class TotalInvited {

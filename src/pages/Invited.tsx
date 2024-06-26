@@ -34,11 +34,28 @@ export function Invited() {
   const formatter = new Formatter()
   const totalOfInvited = new TotalInvited()
 
+  const Metrics = [
+    {
+      title: "Total de Convidados",
+      total: totalOfInvited.TotalOfInvited(singleEvents)
+    },
+    {
+      title: "Número de Convidados",
+      total: singleEvents.amount
+    },
+    {
+      title: "Código do Evento",
+      total: singleEvents.code
+    }
+
+  ]
+
   return (
     <Layout
       sectionButton={
         <button onClick={OpenAndCloseDetailsEvents} className="bg-blue-500 text-gray-100 rounded px-4 py-3 hover:bg-blue-500/80">Detalhes</button>
       }
+      metrics={Metrics}
     >
       <div className="px-8 flex flex-col gap-6">
         <div className="flex justify-between items-center space-y-4">

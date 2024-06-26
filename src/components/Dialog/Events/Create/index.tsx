@@ -7,20 +7,20 @@ import { MapPin, Users } from "lucide-react";
 import { CONSTANTS } from "../../../../constants";
 import { FormEvent } from "react";
 import { v4 as uuidv4 } from 'uuid';
-import { Events, EVENTSTYPES } from "../../../../type";
+import { EVENTSTYPES } from "../../../../type";
 import { Button } from "../../../form/Button";
+import { useEvents } from "../../../../context";
 
 
 
 type DiologCreatEvetnsProps = {
   onClose: () => void
-  onCreateEvents: (newEvents: Events) => void
 }
 
 
 
-export function DiologCreatEvetns({ onClose, onCreateEvents }: DiologCreatEvetnsProps) {
-
+export function DiologCreatEvetns({ onClose }: DiologCreatEvetnsProps) {
+  const { onCreateEvents } = useEvents()
 //  const { register, handleSubmit } = useForm()
   const onSubimt = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
