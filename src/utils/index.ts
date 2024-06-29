@@ -1,5 +1,6 @@
 import { Events } from "../type";
 import { CONSTANTS } from "../constants/"
+import { FullEventSchemaDTO } from "../Schema";
 export class Formatter {
   private date;
   constructor() {
@@ -20,7 +21,7 @@ export class TotalEvents {
     return events.length;
   }
 
-  TotalOfFinally(events: Events[]) {
+  TotalOfFinally(events: FullEventSchemaDTO[]) {
     return events.reduce((acc, curr) => {
       if (new Date(curr.date).getTime() < new Date().getTime() && new Date(curr.durantion).getTime() < new Date().getTime()) {
         acc += 1;
@@ -29,7 +30,7 @@ export class TotalEvents {
     }, 0);
   }
 
-  TotalOfPending(events: Events[]){
+  TotalOfPending(events: FullEventSchemaDTO[]){
 
       return events.reduce((acc, curr) => {
         if (new Date(curr.date).getTime() > new Date().getTime()) {
@@ -41,8 +42,8 @@ export class TotalEvents {
 }
 
 export class TotalInvited {
-  TotalOfInvited(data: Events) {
-    return data.invite.reduce((acc, curr) => (acc += curr.amount), 0);
+  TotalOfInvited(data: FullEventSchemaDTO) {
+    return data.invite?.reduce((acc, curr) => (acc += curr.amount), 0);
   }
 }
 

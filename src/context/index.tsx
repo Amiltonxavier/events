@@ -1,10 +1,11 @@
 import { createContext, ReactNode, useContext, useState } from "react"
 import { Events, InviteProps } from "../type"
+import { EventSchemaDTO, FullEventSchemaDTO, FullInviteSchemaDTO, InviteSchemaDTO } from "../Schema";
 
 
 type EventsProps = {
-    events: Events[],
-    onCreateEvents: (newEvents: Events) => void,
+    events: EventSchemaDTO[],
+    onCreateEvents: (newEvents: FullEventSchemaDTO) => void,
     onCreateInvited: (newInvite: InviteProps ) => void,
     
 }
@@ -16,7 +17,7 @@ type EventsProvidersProps = {
 }
 
 export function EventsProviders({ children }: EventsProvidersProps) {
-    const [events, setEvents] = useState<Events[]>(() => {
+    const [events, setEvents] = useState<EventSchemaDTO[]>(() => {
       const eventsOnStorage = localStorage.getItem('events')
       if(eventsOnStorage){
         return JSON.parse(eventsOnStorage)
@@ -25,17 +26,17 @@ export function EventsProviders({ children }: EventsProvidersProps) {
     });
    
 
-    const onCreateEvents = (newEvents: Events) => {
-        if (!newEvents || newEvents.date.getTime() < new Date().getTime())
+    const onCreateEvents = (newEvents: FullEventSchemaDTO) => {
+        if (!newEvents /*|| newEvents.date.getTime() < new Date().getTime() || newEvents.date.getTime() > newEvents.durantion.getTime() */)
           throw Error('Errou ao Criar um Evento')
           setEvents(prevEvents => [...prevEvents, newEvents])
           localStorage.setItem('events',JSON.stringify([...events, newEvents]))
       }
-      const onCreateInvited = (newInvite: InviteProps ) => {
+      const onCreateInvited = (newInvite: FullInviteSchemaDTO ) => {
         const { eventID } = newInvite    
         const result = events.map((event) => {
           if (event.id === eventID) {
-            const emailExists = event.invite.some((item) => item.email === newInvite.email);
+            const emailExists = event.invite?.some((item) => item.email === newInvite.email);
             if (!emailExists) {
               return {
                 ...event,

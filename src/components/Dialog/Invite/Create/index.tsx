@@ -9,9 +9,9 @@ import { v4 as uuidv4 } from 'uuid';
 import { useEvents } from "../../../../context";
 import { Button } from "../../../form/Button";
 import { useForm } from 'react-hook-form'
-import { InviteSchema, InviteSchemaDTO } from "../../../../Schema";
+import { CreateInviteSchema, CreateInviteSchemaDTO, FullInviteSchemaDTO, InviteSchema, InviteSchemaDTO } from "../../../../Schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "react-toastify";
+
 
 
 type DiologCreatEvetnsProps = {
@@ -23,25 +23,22 @@ type DiologCreatEvetnsProps = {
 
 export function DiologCreatInvited({ onClose, eventID }: DiologCreatEvetnsProps) {
 
-  const { onCreateInvited } = useEvents()
-
-  const { register, handleSubmit, formState: {errors} } = useForm<InviteSchemaDTO>({
-    resolver: zodResolver(InviteSchema)
+  const { formState: {errors}, register, handleSubmit } = useForm<CreateInviteSchemaDTO>({
+    resolver: zodResolver(CreateInviteSchema)
   })
 
-  const onSubimt = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const { onCreateInvited } = useEvents()
 
-    const formData = new FormData(e.currentTarget);
-  //  if(formData.get('email')?.toString().length > 0) return  toast("Erro ao Cadastrar")
-    const newData = {
-      id: uuidv4() as string,
+
+  const onSubimt = (data: CreateInviteSchemaDTO) => {
+
+
+    const newData: FullInviteSchemaDTO = {
+      id: uuidv4(),
       eventID: eventID,
-      email: formData.get("email") as string,
-      amount: Number(formData.get("amount")) as number,
-      phone: formData.get("phone") as string,
-      createdAt: new Date()
-    }
+      createdAt: new Date(),
+      ...data
+    } 
     onCreateInvited(newData)
     onClose()
   }
@@ -50,7 +47,7 @@ export function DiologCreatInvited({ onClose, eventID }: DiologCreatEvetnsProps)
     <Dialog onClose={onClose}>
       <div className="flex flex-col gap-4">
         <h3 className="text-2xl font-bold text-zinc-600">Convida um amigo</h3>
-        <form onSubmit={onSubimt} className="flex flex-col gap-4">
+        <form onSubmit={handleSubmit(onSubimt)} className="flex flex-col gap-4">
           <Root>
             <Label className="text-gray-100">E-mail</Label>
             <Input.Wrapper>
@@ -59,7 +56,7 @@ export function DiologCreatInvited({ onClose, eventID }: DiologCreatEvetnsProps)
                 type="email"
                 id="email"
                 placeholder="johndue@domain.com"
-                {...register('email')}
+               {...register('email')}
               />
             </Input.Wrapper>
           </Root>
@@ -90,9 +87,10 @@ export function DiologCreatInvited({ onClose, eventID }: DiologCreatEvetnsProps)
                 pattern="[0-9]{3} [0-9]{3} [0-9]{3}"
                 maxLength={12}
                 placeholder="000 000 000"
-                {...register('phone')}
+                {...register('phone')} 
               />
             </Input.Wrapper>
+            {}
           </Root>
           </div>
           <div className="mt-4">
