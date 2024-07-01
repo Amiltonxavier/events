@@ -32,7 +32,7 @@ export function Layout({ children, sectionButton, metrics }: LayoutProps) {
             </div>
           </div>
         </div>
-        <div className="flex flex-col flex-wrap sm:flex-row gap-4 items-center justify-between mt-5 w-full">
+        <div className="flex flex-col sm:flex-row gap-4 items-center justify-between mt-5 w-full">
           <div className="grid grid-cols-3 gap-6 mt-4">
             {
               metrics?.map((metric, index) => (
@@ -43,7 +43,7 @@ export function Layout({ children, sectionButton, metrics }: LayoutProps) {
               ))
             }
           </div>
-          <div className="flex sm:flex-row justify-end">
+          <div className="flex-1 flex sm:flex-row justify-end">
             {sectionButton}
           </div>
         </div>

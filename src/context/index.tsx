@@ -1,7 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from "react"
 import { InviteProps } from "../type"
 import { FullEventSchemaDTO, FullInviteSchemaDTO } from "../Schema";
-import { toast } from "react-toastify";
 
 
 type EventsProps = {
