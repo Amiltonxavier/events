@@ -8,6 +8,7 @@ import { DiologDetailsEvents } from "../components/Dialog/Events/Details";
 import { useEvents } from "../context";
 import * as List from '../components/List'
 import { FullEventSchemaDTO } from "../Schema";
+import { DeleteEvents } from "../components/Dialog/DeleteEvents";
 
 
 
@@ -16,6 +17,7 @@ export function Dashboard() {
   const { events } = useEvents()
   const [isDiologOpen, setIsDiologOpen] = useState(false);
   const [isDiologDetails, setIsDiologDetails] = useState(false)
+  const [isDeleteEventModalOpen, setIsDeleteEventModalOpen] = useState(false)
   const [selectSingleEvent, setSelectSingleEvent] = useState<FullEventSchemaDTO>()
   const formatterDate = new Formatter()
   const total = new TotalEvents()
@@ -36,6 +38,13 @@ export function Dashboard() {
   }
   const SelectEvent = (selectEventId: string) => {
     setSelectSingleEvent(events.find((event) => event.id === selectEventId))
+  }
+
+  function openDeleteEventModalOpen(){
+    setIsDeleteEventModalOpen(true)
+  }
+  function CloseDeleteEventModalOpen(){
+    setIsDeleteEventModalOpen(false)
   }
 
   const Metrics = [
@@ -96,7 +105,7 @@ export function Dashboard() {
                   <List.Item className="flex gap-4">
                     <span className="sm:flex gap-4 self-center">
                       <button className="group">
-                        <Trash className="size-10 group-hover:text-red-700 group-hover:ring-red-700 duration-150 transition-colors ring-2 ring-zinc-200 p-2 rounded-lg" />
+                        <Trash onClick={openDeleteEventModalOpen} className="size-10 group-hover:text-red-700 group-hover:ring-red-700 duration-150 transition-colors ring-2 ring-zinc-200 p-2 rounded-lg" />
                       </button>
                       <button className="group">
                         <ExternalLink 
@@ -116,7 +125,7 @@ export function Dashboard() {
       </section>
       {isDiologOpen && <DiologCreatEvetns onClose={handleCloseDiolog} />}
       {isDiologDetails && selectSingleEvent && <DiologDetailsEvents onClose={onDetailsDiologClose} data={selectSingleEvent} />}
-
+      {isDeleteEventModalOpen && <DeleteEvents onClose={CloseDeleteEventModalOpen} /> }
     </Layout>
   )
 }

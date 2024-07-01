@@ -7,7 +7,7 @@ type EventsProps = {
     events: FullEventSchemaDTO[],
     onCreateEvents: (newEvents: FullEventSchemaDTO) => void,
     onCreateInvited: (newInvite: InviteProps ) => void,
-    
+    deleteOneEvents: (id: string) => void
 }
 
 export const EventsContet = createContext({} as EventsProps);
@@ -49,8 +49,13 @@ export function EventsProviders({ children }: EventsProvidersProps) {
         localStorage.setItem('events',JSON.stringify([...result]))
     }
 
+    function deleteOneEvents (id: string) {
+      const filterData = events.filter((event) => event.id === id)
+      setEvents(filterData)
+    }
+
   return (
-    <EventsContet.Provider value={{events, onCreateEvents, onCreateInvited}}>
+    <EventsContet.Provider value={{events, onCreateEvents, onCreateInvited, deleteOneEvents}}>
       {children}
     </EventsContet.Provider>
   )
