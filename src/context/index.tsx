@@ -1,10 +1,11 @@
 import { createContext, ReactNode, useContext, useState } from "react"
-import { Events, InviteProps } from "../type"
-import { EventSchemaDTO, FullEventSchemaDTO, FullInviteSchemaDTO, InviteSchemaDTO } from "../Schema";
+import { InviteProps } from "../type"
+import { FullEventSchemaDTO, FullInviteSchemaDTO } from "../Schema";
+import { toast } from "react-toastify";
 
 
 type EventsProps = {
-    events: EventSchemaDTO[],
+    events: FullEventSchemaDTO[],
     onCreateEvents: (newEvents: FullEventSchemaDTO) => void,
     onCreateInvited: (newInvite: InviteProps ) => void,
     
@@ -17,7 +18,7 @@ type EventsProvidersProps = {
 }
 
 export function EventsProviders({ children }: EventsProvidersProps) {
-    const [events, setEvents] = useState<EventSchemaDTO[]>(() => {
+    const [events, setEvents] = useState<FullEventSchemaDTO[]>(() => {
       const eventsOnStorage = localStorage.getItem('events')
       if(eventsOnStorage){
         return JSON.parse(eventsOnStorage)
@@ -36,13 +37,11 @@ export function EventsProviders({ children }: EventsProvidersProps) {
         const { eventID } = newInvite    
         const result = events.map((event) => {
           if (event.id === eventID) {
-            const emailExists = event.invite?.some((item) => item.email === newInvite.email);
-            if (!emailExists) {
               return {
                 ...event,
                 invite: [...(event.invite || []), newInvite],
               };
-            }
+            
           }
           return event;
         });

@@ -5,18 +5,19 @@ import { TableCell } from "../components/table/table-cell"
 import { TableRow } from "../components/table/table-row"
 import { TableHeader } from "../components/table/table-header"
 import { Table } from "../components/table/table"
-import { Events } from "../type"
 import { Formatter, TotalInvited } from "../utils"
 import { useState } from "react"
 import { DiologCreatInvited } from "../components/Dialog/Invite/Create"
 import { ArrowLeft, AtSign, Calendar, Phone } from "lucide-react"
 import { DiologDetailsEvents } from "../components/Dialog/Events/Details"
+import { FullEventSchemaDTO } from "../Schema"
 
 
 export function Invited() {
   const { events } = useEvents()
   const { id } = useParams()
-  const singleEvents: Events = events.find((event) => event.id === id)!
+  const singleEvents: FullEventSchemaDTO = events.find((event) => event.id === id)!
+  console.log(singleEvents)
   const [isInvitedOpen, setInvitedOpen] = useState(false)
   const [isDetailsEventsOpen, setIsDetailsEventsOpen] = useState(false);
 
@@ -76,7 +77,7 @@ export function Invited() {
               </thead>
               <tbody>
                 {
-                  singleEvents.invite.map((invite) => (
+                 singleEvents.invite && singleEvents.invite.map((invite) => (
                     <TableRow key={invite.id} className="overflow-auto hover:bg-transparent/20 cursor-pointer">
 
                       <TableCell>{invite.id}</TableCell>

@@ -1,6 +1,6 @@
 import { Events } from "../type";
 import { CONSTANTS } from "../constants/"
-import { FullEventSchemaDTO } from "../Schema";
+import { FullEventSchemaDTO, FullInviteSchemaDTO } from "../Schema";
 export class Formatter {
   private date;
   constructor() {
@@ -17,7 +17,7 @@ export class Formatter {
 }
 
 export class TotalEvents {
-  TotalEvent(events: Events[]) {
+  TotalEvent(events: FullEventSchemaDTO[]) {
     return events.length;
   }
 

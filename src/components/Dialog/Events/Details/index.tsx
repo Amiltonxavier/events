@@ -1,21 +1,19 @@
 import { Dialog } from "../../";
-import { Events } from "../../../../type";
-import { Formatter, TotalInvited } from "../../../../utils";
+import { FullEventSchemaDTO } from "../../../../Schema";
+import { eventStatus, Formatter, TotalInvited } from "../../../../utils";
 import * as Details from '../../../Details/index'
 
 
 type DiologCreatEvetnsProps = {
     onClose: () => void,
-    data: Events
+    data: FullEventSchemaDTO
 }
 
 
 
 export function DiologDetailsEvents({ onClose, data }: DiologCreatEvetnsProps) {
-
+    //{eventStatus(event.date, event.durantion).status}
     const totalOfInvited = new TotalInvited()
-
-   
 
     const formatterData = new Formatter()
     return (
@@ -27,39 +25,47 @@ export function DiologDetailsEvents({ onClose, data }: DiologCreatEvetnsProps) {
                 </div>
                 <Details.Root>
                     <Details.DL>
-                    <div className="px-4 py-6 sm:grid sm:grid-cols-2 sm:gap-2 sm:px-0 text-sm">
-                        
-                        <Details.DT>Identificação</Details.DT>
-                        <Details.DD>{data.id}</Details.DD>
-                    </div>
-                    <div className="px-4 py-2 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">
-                        <Details.DT>Código do Evento</Details.DT>
-                        <Details.DD>{data.code}</Details.DD>
-                    </div>
-                    <div className="px-4 py-2 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">
-                        <Details.DT>Limite de convidados</Details.DT>
-                        <Details.DD>{data.amount}</Details.DD>
-                    </div>
-                    <div className="px-4 py-2 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">
-                        <Details.DT>Título do Evento</Details.DT>
-                        <Details.DD>{data.title}</Details.DD>
-                    </div>
-                    <div className="px-4 py-2 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">
-                        <Details.DT>Tipo de festa</Details.DT>
-                        <Details.DD>{data.type}</Details.DD>
-                    </div>
-                    <div className="px-4 py-2 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">
-                        <Details.DT>Total de Convidados</Details.DT>
-                        <Details.DD>{totalOfInvited.TotalOfInvited(data)}</Details.DD>
-                    </div>
-                    <div className="px-4 py-2 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">
-                        <Details.DT>Convites Restantes</Details.DT>
-                        <Details.DD>{data.amount - totalOfInvited.TotalOfInvited(data)}</Details.DD>
-                    </div>
-                    <div className="px-4 py-2 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">
-                        <Details.DT>Data do Evento</Details.DT>
-                        <Details.DD>{formatterData.formatterDate(data.createdAt)}</Details.DD>
-                    </div>
+                        <div className="px-4 py-6 sm:grid sm:grid-cols-2 sm:gap-2 sm:px-0 text-sm">
+
+                            <Details.DT>Identificação</Details.DT>
+                            <Details.DD>{data.id}</Details.DD>
+                        </div>
+                        <div className="px-4 py-2 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">
+                            <Details.DT>Código do Evento</Details.DT>
+                            <Details.DD>{data.code}</Details.DD>
+                        </div>
+                        <div className="px-4 py-2 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">
+                            <Details.DT>Limite de convidados</Details.DT>
+                            <Details.DD>{data.amount}</Details.DD>
+                        </div>
+                        <div className="px-4 py-2 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">
+                            <Details.DT>Título do Evento</Details.DT>
+                            <Details.DD>{data.title}</Details.DD>
+                        </div>
+                        <div className="px-4 py-2 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">
+                            <Details.DT>Tipo de festa</Details.DT>
+                            <Details.DD>{data.type}</Details.DD>
+                        </div>
+                        <div className="px-4 py-2 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">
+                            <Details.DT>Total de Convidados</Details.DT>
+                            <Details.DD>{totalOfInvited.TotalOfInvited(data)}</Details.DD>
+                        </div>
+                        <div className="px-4 py-2 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">
+                            <Details.DT>Convites Restantes</Details.DT>
+                            <Details.DD>{data.amount - totalOfInvited.TotalOfInvited(data)}</Details.DD>
+                        </div>
+                        <div className="px-4 py-2 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">
+                            <Details.DT>Estado</Details.DT>
+                            <Details.DD>
+                                <span className={`${eventStatus(data.date, data.durantion).color} ${eventStatus(data.date, data.durantion).bg} rounded-2xl p-2`}>
+                                {eventStatus(data.date, data.durantion).status}
+                                </span>
+                                </Details.DD>
+                        </div>
+                        <div className="px-4 py-2 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">
+                            <Details.DT>Data do Evento</Details.DT>
+                            <Details.DD>{formatterData.formatterDate(data.createdAt)}</Details.DD>
+                        </div>
                     </Details.DL>
                 </Details.Root>
                 <div className="flex gap-2 justify-end">

@@ -9,8 +9,9 @@ import { v4 as uuidv4 } from 'uuid';
 import { Button } from "../../../form/Button";
 import { useEvents } from "../../../../context";
 import { useForm } from "react-hook-form";
-import { CreatEventSchema, CreatEventSchemaDTO, FullEventSchemaDTO } from "../../../../Schema";
+import { CreatEventSchema, CreatEventSchemaDTO, FullEventSchemaDTO, FullInviteSchemaDTO } from "../../../../Schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "react-toastify";
 
 
 
@@ -26,15 +27,16 @@ export function DiologCreatEvetns({ onClose }: DiologCreatEvetnsProps) {
     resolver: zodResolver(CreatEventSchema)
   })
   const onSubmit = (data: CreatEventSchemaDTO) => {
-    console.log(data)
     const newData: FullEventSchemaDTO = {
       id: uuidv4(),
       code: uuidv4(),
       createdAt: new Date(),
+      invite: [],
       ...data
     }
 
     onCreateEvents(newData)
+    toast.success('Novo evento criado')
     onClose()
   }
 
