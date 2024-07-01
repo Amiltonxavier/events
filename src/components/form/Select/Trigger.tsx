@@ -9,7 +9,7 @@ export const Trigger = forwardRef<HTMLSelectElement, SelectProps>(
         {...rest}
         name={name}
         ref={ref}
-        className="py-3 px-4 bg-transparent rounded ring-2 ring-zinc-400 focus-within:ring-blue-500 outline-none"
+        className="py-3 px-4 bg-transparent rounded ring-2 ring-zinc-300 focus-within:ring-blue-500 outline-none"
       />
     );
   }

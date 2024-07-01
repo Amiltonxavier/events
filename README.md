@@ -1,30 +1,52 @@
-# React + TypeScript + Vite
+# Project Event.oi
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Dashboard](./public/1.png)
+![Modal para criação de eventos](./public/2.png)
 
-Currently, two official plugins are available:
+## Descrição
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+O **Project Event.oi** é uma aplicação web desenvolvida para a criação e gerenciamento de eventos. Com esta aplicação, você pode criar eventos e convidar pessoas para participarem deles via e-mail. A aplicação foi construída utilizando as seguintes tecnologias:
 
-## Expanding the ESLint configuration
+- **React 18**
+- **Tailwind CSS**
+- **React Router Dom**
+- **Vite**
+- **TypeScript**
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Funcionalidades
 
-- Configure the top-level `parserOptions` property like this:
+- **Criação de Eventos:** Permite a criação de novos eventos.
+- **Envio de Convites:** Envia convites para os convidados via e-mail.
+- **Validação de Formulários:** Utiliza o `react-hook-form` para validação dos formulários.
+- **Visualização de Dados:** Exibe o total de eventos criados e o total de convidados por evento.
+- **Controle de Convites:** Garante que uma pessoa seja convidada apenas uma vez por evento e permite até 3 convidados por convite.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+## Instalação e Execução
+
+1. Clone o repositório:
+   ```sh
+   git clone https://github.com/Amiltonxavier/events
+   cd events
+   ```
+2. Instale as dependências:
+  ```sh 
+  npm install
+  ```
+3. Inicie a aplicação:
+
+```sh
+    npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+5. Acesse a aplicação no navegador:
+```sh
+    http://localhost:5173
+```
+
+# Licença
+Este projeto está licenciado sob a MIT License. Veja o arquivo LICENSE para mais detalhes.
+
+Desenvolvido com ❤️ por Amilton Xavier
+
+
+Sinta-se à vontade para ajustar ou adicionar qualquer informação adicional conforme necessário!
