@@ -4,14 +4,14 @@ import * as Input from "../../../form/Input";
 import { Root } from "../../../form/Root";
 import { Label } from "../../../form/Label";
 import { AtSign, Phone, Users } from "lucide-react";
-import { FormEvent } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { useEvents } from "../../../../context";
 import { Button } from "../../../form/Button";
 import { useForm } from 'react-hook-form'
-import { CreateInviteSchema, CreateInviteSchemaDTO, FullInviteSchemaDTO, InviteSchema, InviteSchemaDTO } from "../../../../Schema";
+import { CreateInviteSchema, CreateInviteSchemaDTO, FullInviteSchemaDTO } from "../../../../Schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
+
 
 
 
@@ -30,6 +30,7 @@ export function DiologCreatInvited({ onClose, eventID }: DiologCreatEvetnsProps)
 
   const { onCreateInvited, events } = useEvents()
 
+  const { amount } = events.find((event) => event.id === eventID)!
 
   const onSubimt = (data: CreateInviteSchemaDTO) => {
 
@@ -39,16 +40,33 @@ export function DiologCreatInvited({ onClose, eventID }: DiologCreatEvetnsProps)
       }
       return false;
     });
+
+     const isAmountSufficient = events.some(event => {
+      if (eventID === event.id) {
+        const totalAmount = event.invite.reduce((acc, curr) => acc += curr.amount ,0) 
+        return totalAmount + data.amount > amount
+        
+      }
+      return false
+    })
+
+    console.log(isAmountSufficient)
+
+    
+
     if (emailExists) {
       return toast.warning('E-mail já está na lista de convidados')
     }
+     if (isAmountSufficient) {
+      return toast.warning('Número máximo de convidados alcançado.')
+    } 
     const newData: FullInviteSchemaDTO = {
       id: uuidv4(),
       eventID: eventID,
       createdAt: new Date(),
       ...data
     }
-    onCreateInvited(newData)
+    onCreateInvited(newData) 
     toast.success('Convidado Adicionado a lista')
     onClose()
 
@@ -107,7 +125,7 @@ export function DiologCreatInvited({ onClose, eventID }: DiologCreatEvetnsProps)
                   {...register('phone')}
                 />
               </Input.Wrapper>
-              { errors.phone && <span className="text-sm text-red-600">{errors.phone.message}</span> }
+              {errors.phone && <span className="text-sm text-red-600">{errors.phone.message}</span>}
             </Root>
           </div>
           <div className="mt-4">

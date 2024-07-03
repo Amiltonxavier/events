@@ -1,4 +1,3 @@
-import React from 'react'
 import { Dialog } from '..'
 import { useEvents } from '../../../context'
 import { AlertCircle } from 'lucide-react'

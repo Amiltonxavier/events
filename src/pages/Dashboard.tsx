@@ -2,7 +2,6 @@ import { Layout } from "../layout"
 import { BadgePlus, ExternalLink, MailPlus, Trash, Users } from "lucide-react";
 import { useState } from "react";
 import { DiologCreatEvetns } from "../components/Dialog/Events/Create";
-import { Events } from "../type";
 import { eventStatus, Formatter, TotalEvents } from "../utils";
 import { DiologDetailsEvents } from "../components/Dialog/Events/Details";
 import { useEvents } from "../context";

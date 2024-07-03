@@ -1,6 +1,5 @@
-import { Events } from "../type";
 import { CONSTANTS } from "../constants/"
-import { FullEventSchemaDTO, FullInviteSchemaDTO } from "../Schema";
+import { FullEventSchemaDTO } from "../Schema";
 export class Formatter {
   private date;
   constructor() {

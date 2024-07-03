@@ -12,7 +12,6 @@ type DiologCreatEvetnsProps = {
 
 
 export function DiologDetailsEvents({ onClose, data }: DiologCreatEvetnsProps) {
-    //{eventStatus(event.date, event.durantion).status}
     const totalOfInvited = new TotalInvited()
 
     const formatterData = new Formatter()
