@@ -75,7 +75,7 @@ export function Dashboard() {
           <button
             type="button"
             onClick={handleOpenDialog}
-            className="text-gray-100 font-medium bg-blue-500 p-4 rounded hover:bg-blue-600 focus-within:ring-2 flex gap-3 items-center ring-0 focus-within:ring-blue-600 outline-none"
+            className="text-gray-100 font-medium bg-blue-500 p-4 rounded hover:bg-blue-600 focus-within:ring-2 flex gap-1 sm:gap-3 items-center ring-0 focus-within:ring-blue-600 outline-none"
           >
             New Event <BadgePlus />
           </button>
@@ -105,12 +105,12 @@ export function Dashboard() {
                         {eventStatus(event.date, event.durantion).status}
                       </List.ItemBody>
                     </List.Item>
-                    <List.Item className="justify-end">
+                    <List.Item className="w-full justify-end">
                       <List.ItemHeader>Date created</List.ItemHeader>
                       <List.ItemBody>{formatterDate.formatterDate(event.createdAt)}</List.ItemBody>
                     </List.Item>
-                    <List.Item className="flex gap-1 sm:gap-4 flex-wrap">
-                      <span className="sm:flex gap-1 sm:gap-4 self-center">
+                    <List.Item className="grid w-32 mr-auto sm:grid-cols-2 md:grid-cols-3 gap-1 sm:gap-4">
+                      <div className="sm:flex gap-1 flex-wrap sm:gap-4 self-center">
                         <button type="button" className="group">
                           <Trash onClick={() => openDeleteEventModalOpen(event.id)}
                             className="size-8 sm:size-10 group-hover:text-red-700 group-hover:ring-red-700 duration-150 transition-colors ring-2 ring-zinc-200 p-2 rounded-lg" />
@@ -123,7 +123,7 @@ export function Dashboard() {
                         <Link to={`/events/${event.id}`} className="group">
                           <MailPlus className="size-8 sm:size-10 hover:text-blue-500 duration-150 transition-colors ring-2 ring-zinc-200 p-2 rounded-lg" />
                         </Link>
-                      </span>
+                      </div>
                     </List.Item>
                   </List.Ul>
                 </List.Root>

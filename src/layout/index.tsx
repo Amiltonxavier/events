@@ -34,12 +34,12 @@ export function Layout({ children, sectionButton, metrics }: LayoutProps) {
             </div>
           </div>
         </div>
-        <div className="sm:flex gap-4 items-center justify-between mt-5 w-full">
+        <div className="sm:flex gap-4 items-center justify-between mt-5 w-full transition-all ease-in-out duration-150">
           <div className="grid grid-cols-3 gap-2 sm:gap-6 mt-4">
             {
               metrics?.map((metric) => (
                 <div key={metric.title} className="flex flex-col gap-1 max-h-14 max-w-full">
-                  <h4 className="font-bold leading-6 text-[#FCFDFF] text-lg sm:text-2xl text-left">{metric.total}</h4>
+                  <h4 className="font-bold leading-relaxed sm:leading-6 text-[#FCFDFF] text-lg sm:text-2xl text-left">{metric.total}</h4>
                   <p className="text-base font-normal text-[#BFBFCC] text-left">{metric.title}</p>
                 </div>
               ))
