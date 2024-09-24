@@ -64,37 +64,37 @@ export function eventStatus(eventData: string | Date, duration: string | Date) {
   const secondsDifference = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
   const status = {
-    finalizado: currentDate > durationDate,
-    aDecorrer: currentDate >= startDate && currentDate <= durationDate,
-    porDecorrer: daysDifference > 10,
-    faltamDias: daysDifference > 0 && daysDifference <= 10,
-    faltamHorasMinutosSegundos:
+    finished: currentDate > durationDate,
+    ongoing: currentDate >= startDate && currentDate <= durationDate,
+    upcoming: daysDifference > 10,
+    daysLeft: daysDifference > 0 && daysDifference <= 10,
+    hoursMinutesSecondsLeft:
       daysDifference === 0 &&
       (hoursDifference > 0 || minutesDifference > 0 || secondsDifference > 0),
-    comecando:
+    startingSoon:
       daysDifference === 0 &&
       hoursDifference === 0 &&
       minutesDifference === 0 &&
       secondsDifference === 0,
   };
 
-  const statusKey = status.finalizado
-    ? "finalizado"
-    : status.aDecorrer
-    ? "aDecorrer"
-    : status.porDecorrer
-    ? "porDecorrer"
-    : status.faltamDias
-    ? "faltamDias"
-    : status.faltamHorasMinutosSegundos
-    ? "faltamHorasMinutosSegundos"
-    : "comecando";
+  const statusKey = status.finished
+    ? "finished"
+    : status.ongoing
+    ? "ongoing"
+    : status.upcoming
+    ? "upcoming"
+    : status.daysLeft
+    ? "daysLeft"
+    : status.hoursMinutesSecondsLeft
+    ? "hoursMinutesSecondsLeft"
+    : "startingSoon";
 
   return {
     status:
-      statusKey === "faltamDias"
+      statusKey === "daysLeft"
         ? `There are ${daysDifference} days left`
-        : statusKey === "faltamHorasMinutosSegundos"
+        : statusKey === "hoursMinutesSecondsLeft"
         ? `There are ${hoursDifference} hours, ${minutesDifference} minutes, and ${secondsDifference} seconds left`
         : statusKey.charAt(0).toUpperCase() +
           statusKey

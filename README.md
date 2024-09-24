@@ -1,11 +1,23 @@
 # Project Event.oi
 
+## DEMO
+
+Check out the live demo of the application here:
+
+[Click here to open DEMO](https://events-nine-umber.vercel.app/)
+
+![how to create new event](./public/v1.gif)
+
+### Dashboard Screen
 ![Dashboard](./public/1.png)
-![Modal para criação de eventos](./public/2.png)
+### Create Event Screen
+![Modal for event creation](./public/2.png)
+### Event Details Screen
+![Modal for event creation](./public/3.png)
 
-## Descrição
+## Description
 
-O **Project Event.oi** é uma aplicação web desenvolvida para a criação e gerenciamento de eventos. Com esta aplicação, você pode criar eventos e convidar pessoas para participarem deles via e-mail. A aplicação foi construída utilizando as seguintes tecnologias:
+**Project Event.oi** is a web application developed for creating and managing events. With this application, you can create events and invite people to participate via email. The application is built using the following technologies:
 
 - **React 18**
 - **Tailwind CSS**
@@ -13,40 +25,44 @@ O **Project Event.oi** é uma aplicação web desenvolvida para a criação e ge
 - **Vite**
 - **TypeScript**
 
-## Funcionalidades
+## Features
 
-- **Criação de Eventos:** Permite a criação de novos eventos.
-- **Envio de Convites:** Envia convites para os convidados via e-mail.
-- **Validação de Formulários:** Utiliza o `react-hook-form` para validação dos formulários.
-- **Visualização de Dados:** Exibe o total de eventos criados e o total de convidados por evento.
-- **Controle de Convites:** Garante que uma pessoa seja convidada apenas uma vez por evento e permite até 3 convidados por convite.
+- **Event Creation:** Allows the creation of new events.
+- **Invitation Sending:** Sends invitations to guests via email.
+- **Form Validation:** Uses `react-hook-form` for form validation.
+- **Data Display:** Shows the total number of events created and the total number of guests per event.
+- **Invitation Control:** Ensures that a person is invited only once per event and allows up to 3 guests per invitation.
 
-## Instalação e Execução
+## Installation and Execution
 
-1. Clone o repositório:
+1. Clone the repository:
    ```sh
    git clone https://github.com/Amiltonxavier/events
    cd events
-   ```
-2. Instale as dependências:
-  ```sh 
+
+ ```
+
+2. Install the dependencies: 
+```sh 
   npm install
+
   ```
-3. Inicie a aplicação:
+3. Start the application:
 
 ```sh
     npm run dev
 ```
 
-5. Acesse a aplicação no navegador:
-```sh
+4. Access the application in the browser:
+```shell
     http://localhost:5173
+
 ```
 
 # Licença
-Este projeto está licenciado sob a MIT License. Veja o arquivo LICENSE para mais detalhes.
 
-Desenvolvido com ❤️ por Amilton Xavier
+This project is licensed under the MIT License. See the LICENSE file for more details.
 
+Developed with ❤️ by Amilton Xavier
 
-Sinta-se à vontade para ajustar ou adicionar qualquer informação adicional conforme necessário!
+This version includes the translated sections and a demo link section, without separating the installation commands or adding extra zones. Let me know if you need any further adjustments!

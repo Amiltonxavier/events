@@ -2,28 +2,28 @@ import { EVENTSTYPES } from "../types";
 
 export const EVENTSTYPESARRAY = Object.values(EVENTSTYPES)
 
-export const STATUS_COLORS = {
-  finalizado: {
+const STATUS_COLORS = {
+  finished: {
     bg: "bg-red-200",
     color: "text-red-900"
   },
-  aDecorrer: {
+  ongoing: {
     bg: "bg-green-200",
     color: "text-green-900"
   },
-  porDecorrer: {
+  upcoming: {
     bg: "bg-blue-200",
     color: "text-blue-900"
   },
-  faltamDias: {
+  daysLeft: {
     bg: "bg-lime-200",
     color: "text-lime-900"
   },
-  faltamHorasMinutosSegundos: {
+  hoursMinutesSecondsLeft: {
     bg: "bg-orange-200",
     color: "text-orange-900"
   },
-  comecando: {
+  startingSoon: {
     bg: "bg-indigo-200",
     color: "text-indigo-900"
   }
