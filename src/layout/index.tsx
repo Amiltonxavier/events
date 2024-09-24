@@ -16,7 +16,7 @@ type LayoutProps = ComponentProps<'main'> & {
 export function Layout({ children, sectionButton, metrics }: LayoutProps) {
 
   return (
-    <main className='w-full min-h-screen bg-gray-200 text-zinc-800'>
+    <main className='w-full min-h-screen bg-gray-200 text-zinc-800 animate-fadeIn'>
       <section className="w-full h-72 sm:h-64 max-h-96 bg-[#41414C] px-8">
         <div className="pt-5 pb-4 border-b border-zinc-600">
           <div className="flex justify-between items-center">
