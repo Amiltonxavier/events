@@ -1,4 +1,4 @@
-import { Events } from "../type";
+import { Events } from "../types";
 
 export class Storage {
   //private key: string;

@@ -1,5 +1,6 @@
 
-import { ComponentProps, ReactNode } from "react"
+import type { ComponentProps, ReactNode } from "react"
+import { Link } from "react-router-dom"
 
 type Metrics = {
   title: string,
@@ -19,13 +20,16 @@ export function Layout({ children, sectionButton, metrics }: LayoutProps) {
       <section className="w-full h-72 sm:h-64 max-h-96 bg-[#41414C] px-8">
         <div className="pt-5 pb-4 border-b border-zinc-600">
           <div className="flex justify-between items-center">
-            <h1 className="text-4xl font-bold text-white block">Events.io</h1>
+            <h1 className="text-4xl font-bold text-white block">
+              <Link to={"/"}>
+                Events.io
+              </Link>
+            </h1>
             <div className="flex items-center gap-2">
               <span className="flex flex-col">
                 <h5 className="font-bold text-white text-xl">John Due</h5>
-                <span className="text-zinc-300">Ver perfil</span>
+                <span className="text-zinc-300">View profile</span>
               </span>
-              <span></span>
               <span className="">
                 <img className="ring-2 ring-blue-500 size-14 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
               </span>

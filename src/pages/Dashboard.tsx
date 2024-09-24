@@ -6,7 +6,7 @@ import { eventStatus, Formatter, TotalEvents } from "../utils";
 import { DiologDetailsEvents } from "../components/Dialog/Events/Details";
 import { useEvents } from "../context";
 import * as List from '../components/List'
-import { FullEventSchemaDTO } from "../Schema";
+import type { FullEventSchemaDTO } from "../Schema";
 import { DeleteEvents } from "../components/Dialog/DeleteEvents";
 
 
@@ -17,6 +17,7 @@ export function Dashboard() {
   const [isDiologOpen, setIsDiologOpen] = useState(false);
   const [isDiologDetails, setIsDiologDetails] = useState(false)
   const [isDeleteEventModalOpen, setIsDeleteEventModalOpen] = useState(false)
+  const [selectID, setSelectID] = useState('')
   const [selectSingleEvent, setSelectSingleEvent] = useState<FullEventSchemaDTO>()
   const formatterDate = new Formatter()
   const total = new TotalEvents()
@@ -34,29 +35,31 @@ export function Dashboard() {
   }
   const onDetailsDiologClose = () => {
     setIsDiologDetails(false)
+    SelectEvent('')
   }
   const SelectEvent = (selectEventId: string) => {
     setSelectSingleEvent(events.find((event) => event.id === selectEventId))
   }
 
-  function openDeleteEventModalOpen(){
+  function openDeleteEventModalOpen(id: string) {
+    setSelectID(id)
     setIsDeleteEventModalOpen(true)
   }
-  function CloseDeleteEventModalOpen(){
+  function CloseDeleteEventModalOpen() {
     setIsDeleteEventModalOpen(false)
   }
 
   const Metrics = [
     {
-      title: "Total de eventos",
+      title: "Total events",
       total: total.TotalEvent(events)
     },
     {
-      title: "Por decorrer",
+      title: "To be held",
       total: total.TotalOfPending(events)
     },
     {
-      title: "Finalizados",
+      title: "Completed",
       total: total.TotalOfFinally(events)
     }
 
@@ -66,17 +69,18 @@ export function Dashboard() {
     <Layout
       sectionButton={
         <button
+          type="button"
           onClick={handleOpenDialog}
           className="text-gray-100 font-medium bg-blue-500 p-4 rounded hover:bg-blue-600 focus-within:ring-2 flex gap-3 items-center ring-0 focus-within:ring-blue-600 outline-none"
         >
-          Novo Evento <BadgePlus />
+          New Event <BadgePlus />
         </button>
       }
       metrics={Metrics}
     >
-      <section className="p-4 -mt-10">
+      <section className="p-4 -mt-10 animate-fadeIn">
         {
-          events && events.length > 0 && events.sort((a, b) =>  new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).map((event) => (
+          events && events.length > 0 && events.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).map((event) => (
             <div key={event.id} className="mb-4">
               <List.Root onDoubleClick={() => onDetailsDiologOpen(event.id)}>
                 <List.Ul>
@@ -84,30 +88,30 @@ export function Dashboard() {
                     <List.ItemBody className="text-lg sm:text-2xl text-[#5A5A66] leading-8">{event.title}</List.ItemBody>
                   </List.Item>
                   <List.Item>
-                    <List.ItemHeader>Tipo de Evento</List.ItemHeader>
+                    <List.ItemHeader>Event Type</List.ItemHeader>
                     <List.ItemBody>{event.type}</List.ItemBody>
                   </List.Item>
                   <List.Item>
-                    <List.ItemHeader>Limite de pessoas</List.ItemHeader>
+                    <List.ItemHeader>Guest Limit</List.ItemHeader>
                     <List.ItemBody className="flex gap-4 items-center">{event.amount} <Users className="size-5" /></List.ItemBody>
                   </List.Item>
                   <List.Item>
-                    <List.ItemHeader>Duração do Evento</List.ItemHeader>
+                    <List.ItemHeader>Days Left For The Event</List.ItemHeader>
                     <List.ItemBody className={`${eventStatus(event.date, event.durantion).color} ${eventStatus(event.date, event.durantion).bg} rounded-2xl p-1 text-center`}>
                       {eventStatus(event.date, event.durantion).status}
-                      </List.ItemBody>
+                    </List.ItemBody>
                   </List.Item>
                   <List.Item className="justify-end">
-                    <List.ItemHeader>Data de criação</List.ItemHeader>
+                    <List.ItemHeader>Date created</List.ItemHeader>
                     <List.ItemBody>{formatterDate.formatterDate(event.createdAt)}</List.ItemBody>
                   </List.Item>
                   <List.Item className="flex gap-4">
                     <span className="sm:flex gap-4 self-center">
-                      <button className="group">
-                        <Trash onClick={openDeleteEventModalOpen} className="size-10 group-hover:text-red-700 group-hover:ring-red-700 duration-150 transition-colors ring-2 ring-zinc-200 p-2 rounded-lg" />
+                      <button type="button" className="group">
+                        <Trash onClick={() => openDeleteEventModalOpen(event.id)} className="size-10 group-hover:text-red-700 group-hover:ring-red-700 duration-150 transition-colors ring-2 ring-zinc-200 p-2 rounded-lg" />
                       </button>
-                      <button className="group">
-                        <ExternalLink 
+                      <button type="button" className="group">
+                        <ExternalLink
                           onClick={() => onDetailsDiologOpen(event.id)}
                           className="size-10 group-hover:text-red-700 group-hover:ring-red-700 duration-150 transition-colors ring-2 ring-zinc-200 p-2 rounded-lg" />
                       </button>
@@ -124,7 +128,7 @@ export function Dashboard() {
       </section>
       {isDiologOpen && <DiologCreatEvetns onClose={handleCloseDiolog} />}
       {isDiologDetails && selectSingleEvent && <DiologDetailsEvents onClose={onDetailsDiologClose} data={selectSingleEvent} />}
-      {isDeleteEventModalOpen && <DeleteEvents onClose={CloseDeleteEventModalOpen} /> }
+      {isDeleteEventModalOpen && selectID && <DeleteEvents id={selectID} onClose={CloseDeleteEventModalOpen} />}
     </Layout>
   )
 }

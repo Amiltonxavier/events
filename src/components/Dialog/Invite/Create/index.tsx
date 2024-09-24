@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useEvents } from "../../../../context";
 import { Button } from "../../../form/Button";
 import { useForm } from 'react-hook-form'
-import { CreateInviteSchema, CreateInviteSchemaDTO, FullInviteSchemaDTO } from "../../../../Schema";
+import { CreateInviteSchema, type CreateInviteSchemaDTO, type FullInviteSchemaDTO } from "../../../../Schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
 
@@ -41,32 +41,27 @@ export function DiologCreatInvited({ onClose, eventID }: DiologCreatEvetnsProps)
       return false;
     });
 
-     const isAmountSufficient = events.some(event => {
+    const isAmountSufficient = events.some(event => {
       if (eventID === event.id) {
-        const totalAmount = event.invite.reduce((acc, curr) => acc += curr.amount ,0) 
+        const totalAmount = event.invite.reduce((acc, curr) => acc += curr.amount, 0)
         return totalAmount + data.amount > amount
-        
+
       }
       return false
     })
-
-    console.log(isAmountSufficient)
-
-    
-
     if (emailExists) {
       return toast.warning('E-mail já está na lista de convidados')
     }
-     if (isAmountSufficient) {
+    if (isAmountSufficient) {
       return toast.warning('Número máximo de convidados alcançado.')
-    } 
+    }
     const newData: FullInviteSchemaDTO = {
       id: uuidv4(),
       eventID: eventID,
       createdAt: new Date(),
       ...data
     }
-    onCreateInvited(newData) 
+    onCreateInvited(newData)
     toast.success('Convidado Adicionado a lista')
     onClose()
 
@@ -75,7 +70,7 @@ export function DiologCreatInvited({ onClose, eventID }: DiologCreatEvetnsProps)
   return (
     <Dialog onClose={onClose}>
       <div className="flex flex-col gap-4">
-        <h3 className="text-2xl font-bold text-zinc-600">Convida um amigo</h3>
+        <h3 className="text-2xl font-bold text-zinc-600">Invite a Friend</h3>
         <form onSubmit={handleSubmit(onSubimt)} className="flex flex-col gap-4">
           <Root>
             <Label className="text-gray-100">E-mail</Label>
@@ -85,6 +80,7 @@ export function DiologCreatInvited({ onClose, eventID }: DiologCreatEvetnsProps)
                 type="email"
                 id="email"
                 placeholder="johndue@domain.com"
+                className="placeholder:italic"
                 {...register('email')}
               />
             </Input.Wrapper>
@@ -94,7 +90,7 @@ export function DiologCreatInvited({ onClose, eventID }: DiologCreatEvetnsProps)
           </Root>
           <div className="grid grid-cols-2 gap-2">
             <Root>
-              <Label>Quantidade de Convidados</Label>
+              <Label>Number of Guests</Label>
               <Input.Wrapper>
                 <Input.Icon icon={Users} />
                 <Input.Control
@@ -104,6 +100,7 @@ export function DiologCreatInvited({ onClose, eventID }: DiologCreatEvetnsProps)
                   max={3}
                   maxLength={3}
                   id="amount"
+                  className="placeholder:italic"
                   placeholder="Valor de entrada"
                   {...register('amount')}
                 />
@@ -113,7 +110,7 @@ export function DiologCreatInvited({ onClose, eventID }: DiologCreatEvetnsProps)
               }
             </Root>
             <Root>
-              <Label>Telefone</Label>
+              <Label>Phone Number</Label>
               <Input.Wrapper>
                 <Input.Icon icon={Phone} />
                 <Input.Control
@@ -121,6 +118,7 @@ export function DiologCreatInvited({ onClose, eventID }: DiologCreatEvetnsProps)
                   id="phone"
                   pattern="[0-9]{3} [0-9]{3} [0-9]{3}"
                   maxLength={12}
+                  className="placeholder:italic"
                   placeholder="000 000 000"
                   {...register('phone')}
                 />
@@ -130,7 +128,7 @@ export function DiologCreatInvited({ onClose, eventID }: DiologCreatEvetnsProps)
           </div>
           <div className="mt-4">
             <Button>
-              Convidar
+              Invite
             </Button>
           </div>
         </form>
