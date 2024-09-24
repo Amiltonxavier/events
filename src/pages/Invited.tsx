@@ -96,7 +96,7 @@ export function Invited() {
                 </thead>
                 <tbody>
                   {
-                    singleEvents.invite && singleEvents.invite.map((invite) => (
+                    singleEvents.invite.map((invite) => (
                       <TableRow key={invite.id} className="overflow-auto hover:bg-transparent/20 cursor-pointer">
                         <TableCell>{invite.id}</TableCell>
                         <TableCell>{invite.email}</TableCell>

@@ -1,5 +1,5 @@
 import { Layout } from "../layout"
-import { BadgePlus, ExternalLink, MailPlus, Trash, Users } from "lucide-react";
+import { BadgePlus, MailPlus, ReceiptText, Trash, Users } from "lucide-react";
 import { useState } from "react";
 import { DiologCreatEvetns } from "../components/Dialog/Events/Create";
 import { eventStatus, Formatter, TotalEvents } from "../utils";
@@ -109,15 +109,15 @@ export function Dashboard() {
                       <List.ItemHeader>Date created</List.ItemHeader>
                       <List.ItemBody>{formatterDate.formatterDate(event.createdAt)}</List.ItemBody>
                     </List.Item>
-                    <List.Item className="flex gap-4">
+                    <List.Item className="flex gap-4 flex-wrap">
                       <span className="sm:flex gap-4 self-center">
                         <button type="button" className="group">
                           <Trash onClick={() => openDeleteEventModalOpen(event.id)} className="size-10 group-hover:text-red-700 group-hover:ring-red-700 duration-150 transition-colors ring-2 ring-zinc-200 p-2 rounded-lg" />
                         </button>
                         <button type="button" className="group">
-                          <ExternalLink
+                          <ReceiptText
                             onClick={() => onDetailsDiologOpen(event.id)}
-                            className="size-10 group-hover:text-red-700 group-hover:ring-red-700 duration-150 transition-colors ring-2 ring-zinc-200 p-2 rounded-lg" />
+                            className="size-10 group-hover:text-blue-700 group-hover:ring-blue-700 duration-150 transition-colors ring-2 ring-zinc-200 p-2 rounded-lg" />
                         </button>
                         <Link to={`/events/${event.id}`} className="group">
                           <MailPlus className="size-10 hover:text-blue-500 duration-150 transition-colors ring-2 ring-zinc-200 p-2 rounded-lg" />
