@@ -8,6 +8,7 @@ import { useEvents } from "../context";
 import * as List from '../components/List'
 import type { FullEventSchemaDTO } from "../Schema";
 import { DeleteEvents } from "../components/Dialog/DeleteEvents";
+import { Link } from "react-router-dom";
 
 
 
@@ -115,9 +116,9 @@ export function Dashboard() {
                           onClick={() => onDetailsDiologOpen(event.id)}
                           className="size-10 group-hover:text-red-700 group-hover:ring-red-700 duration-150 transition-colors ring-2 ring-zinc-200 p-2 rounded-lg" />
                       </button>
-                      <a href={`/events/${event.id}`} className="group">
+                      <Link to={`/events/${event.id}`} className="group">
                         <MailPlus className="size-10 hover:text-blue-500 duration-150 transition-colors ring-2 ring-zinc-200 p-2 rounded-lg" />
-                      </a>
+                      </Link>
                     </span>
                   </List.Item>
                 </List.Ul>
