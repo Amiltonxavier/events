@@ -11,6 +11,7 @@ import { DiologCreatInvited } from "../components/Dialog/Invite/Create"
 import { ArrowLeft, Calendar, Mail, Phone, ReceiptText, Users } from "lucide-react"
 import { DiologDetailsEvents } from "../components/Dialog/Events/Details"
 import type { FullEventSchemaDTO } from "../Schema"
+import { Helmet } from "react-helmet"
 
 
 export function Invited() {
@@ -55,62 +56,65 @@ export function Invited() {
 
 
   return (
-    <Layout
-      sectionButton={
-        <button
-          type="button"
-          onClick={OpenAndCloseDetailsEvents}
-          className="bg-blue-500 text-gray-100 rounded px-4 py-3 hover:bg-blue-500/80 flex gap-4 items-center">
-          Details
-          <ReceiptText />
-        </button>
-      }
-      metrics={Metrics}
-    >
-      <div className="px-8 flex flex-col gap-6">
-        <div className="flex justify-between items-center space-y-4">
-          <a href="/"><ArrowLeft className="hover:scale-125 duration-200 size-8 border-4 border-zinc-600 rounded-full hover:text-blue-500 hover:border-blue-500 hover:ring-2" /></a>
+    <>
+      <Helmet title="Invited" />
+      <Layout
+        sectionButton={
           <button
             type="button"
-            disabled={isEventOver}
-            onClick={openInvitedDiolog}
-            className="flex items-center gap-2 bg-blue-500 text-gray-100 rounded px-4 py-3 hover:bg-blue-500/80  disabled:opacity-50 disabled:cursor-not-allowed">
-            <Mail />
-            Invite
+            onClick={OpenAndCloseDetailsEvents}
+            className="bg-blue-500 text-gray-100 rounded px-4 py-3 hover:bg-blue-500/80 flex gap-4 items-center">
+            Details
+            <ReceiptText />
           </button>
-        </div>
-        <section className="bg-white p-4 shadow-md rounded-md">
-          <div className="text-gray-100">
-            <Table>
-              <thead>
-                <tr className="border-b border-stone-200">
-                  <TableHeader>id</TableHeader>
-                  <TableHeader><Mail className="size-4 inline-block" />E-mail</TableHeader>
-                  <TableHeader><Phone className="size-4 inline-block" /> Phone Number</TableHeader>
-                  <TableHeader><Users className="size-4 inline-block" /> Amount of People</TableHeader>
-                  <TableHeader><Calendar className="size-4 inline-block" />Date created</TableHeader>
-                </tr>
-              </thead>
-              <tbody>
-                {
-                  singleEvents.invite && singleEvents.invite.map((invite) => (
-                    <TableRow key={invite.id} className="overflow-auto hover:bg-transparent/20 cursor-pointer">
-                      <TableCell>{invite.id}</TableCell>
-                      <TableCell>{invite.email}</TableCell>
-                      <TableCell>{invite.phone ?? "N/A"}</TableCell>
-                      <TableCell>{invite.amount}</TableCell>
-                      <TableCell>{formatter.formatterDate(invite.createdAt)}</TableCell>
-                    </TableRow>
-                  ))
-                }
-              </tbody>
-            </Table>
+        }
+        metrics={Metrics}
+      >
+        <div className="px-8 flex flex-col gap-6">
+          <div className="flex justify-between items-center space-y-4">
+            <a href="/"><ArrowLeft className="hover:scale-125 duration-200 size-8 border-4 border-zinc-600 rounded-full hover:text-blue-500 hover:border-blue-500 hover:ring-2" /></a>
+            <button
+              type="button"
+              disabled={isEventOver}
+              onClick={openInvitedDiolog}
+              className="flex items-center gap-2 bg-blue-500 text-gray-100 rounded px-4 py-3 hover:bg-blue-500/80  disabled:opacity-50 disabled:cursor-not-allowed">
+              <Mail />
+              Invite
+            </button>
           </div>
-        </section>
-      </div>
+          <section className="bg-white p-4 shadow-md rounded-md">
+            <div className="text-gray-100">
+              <Table>
+                <thead>
+                  <tr className="border-b border-stone-200">
+                    <TableHeader>id</TableHeader>
+                    <TableHeader><Mail className="size-4 inline-block" />E-mail</TableHeader>
+                    <TableHeader><Phone className="size-4 inline-block" /> Phone Number</TableHeader>
+                    <TableHeader><Users className="size-4 inline-block" /> Amount of People</TableHeader>
+                    <TableHeader><Calendar className="size-4 inline-block" />Date created</TableHeader>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    singleEvents.invite && singleEvents.invite.map((invite) => (
+                      <TableRow key={invite.id} className="overflow-auto hover:bg-transparent/20 cursor-pointer">
+                        <TableCell>{invite.id}</TableCell>
+                        <TableCell>{invite.email}</TableCell>
+                        <TableCell>{invite.phone ?? "N/A"}</TableCell>
+                        <TableCell>{invite.amount}</TableCell>
+                        <TableCell>{formatter.formatterDate(invite.createdAt)}</TableCell>
+                      </TableRow>
+                    ))
+                  }
+                </tbody>
+              </Table>
+            </div>
+          </section>
+        </div>
 
-      {isInvitedOpen && id && <DiologCreatInvited onClose={closeInvitedDiolog} eventID={id} />}
-      {isDetailsEventsOpen && singleEvents && <DiologDetailsEvents onClose={OpenAndCloseDetailsEvents} data={singleEvents} />}
-    </Layout>
+        {isInvitedOpen && id && <DiologCreatInvited onClose={closeInvitedDiolog} eventID={id} />}
+        {isDetailsEventsOpen && singleEvents && <DiologDetailsEvents onClose={OpenAndCloseDetailsEvents} data={singleEvents} />}
+      </Layout>
+    </>
   )
 }
