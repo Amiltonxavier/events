@@ -109,8 +109,8 @@ export function Dashboard() {
                       <List.ItemHeader>Date created</List.ItemHeader>
                       <List.ItemBody>{formatterDate.formatterDate(event.createdAt)}</List.ItemBody>
                     </List.Item>
-                    <List.Item className="grid w-32 mr-auto sm:grid-cols-2 md:grid-cols-3 gap-1 sm:gap-4">
-                      <div className="sm:flex gap-1 flex-wrap sm:gap-4 self-center">
+                    <List.Item className="grid sm:grid-cols-2 md:grid-cols-3 gap-1 sm:gap-4">
+                      <div className="sm:flex gap-1 sm:gap-4 self-center">
                         <button type="button" className="group">
                           <Trash onClick={() => openDeleteEventModalOpen(event.id)}
                             className="size-8 sm:size-10 group-hover:text-red-700 group-hover:ring-red-700 duration-150 transition-colors ring-2 ring-zinc-200 p-2 rounded-lg" />

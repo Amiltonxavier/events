@@ -90,10 +90,10 @@ export function Invited() {
                 <thead>
                   <tr className="border-b border-stone-200">
                     <TableHeader>id</TableHeader>
-                    <TableHeader><Mail className="size-4 inline-block" />E-mail</TableHeader>
-                    <TableHeader><Phone className="size-4 inline-block" /> Phone Number</TableHeader>
-                    <TableHeader><Users className="size-4 inline-block" /> Amount of People</TableHeader>
-                    <TableHeader><Calendar className="size-4 inline-block" />Date created</TableHeader>
+                    <TableHeader><Mail className="size-4 w-full" />E-mail</TableHeader>
+                    <TableHeader><Phone className="size-4 w-full inline-flex items-center gap-2" /> Phone Number</TableHeader>
+                    <TableHeader><Users className="size-4 w-full inline-flex items-center gap-2" /> Amount of People</TableHeader>
+                    <TableHeader><Calendar className="size-4 w-full inline-flex items-center gap-2" />Date created</TableHeader>
                   </tr>
                 </thead>
                 <tbody>
