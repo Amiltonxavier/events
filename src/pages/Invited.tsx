@@ -8,7 +8,7 @@ import { Table } from "../components/table/table"
 import { Formatter, TotalInvited } from "../utils"
 import { useState } from "react"
 import { DiologCreatInvited } from "../components/Dialog/Invite/Create"
-import { ArrowLeft, AtSign, Calendar, Mail, Phone, ReceiptText, Users } from "lucide-react"
+import { ArrowLeft, Calendar, Mail, Phone, ReceiptText, Users } from "lucide-react"
 import { DiologDetailsEvents } from "../components/Dialog/Events/Details"
 import type { FullEventSchemaDTO } from "../Schema"
 
