@@ -42,7 +42,7 @@ export function DiologCreatEvetns({ onClose }: DiologCreatEvetnsProps) {
   return (
     <Dialog onClose={onClose}>
       <div className="flex flex-col gap-4">
-        <h3 className="text-2xl font-bold tracking-tight text-zinc-700">New Event</h3>
+        <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-700">New Event</h3>
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
           <Root>
             <Label>Event Title</Label>
@@ -96,7 +96,7 @@ export function DiologCreatEvetns({ onClose }: DiologCreatEvetnsProps) {
               {errors.local && <span className="text-sm text-red-600">{errors.local.message}</span>}
             </Root>
           </div>
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid sm:grid-cols-2 gap-2">
             <Root>
               <Label>Event Date and Time</Label>
               <Input.Wrapper>

@@ -82,14 +82,14 @@ export function Dashboard() {
         }
         metrics={Metrics}
       >
-        <section className="p-4 -mt-10 animate-fadeIn">
+        <section className="p-2 sm:p-4 sm:-mt-10 animate-fadeIn">
           {
             events && events.length > 0 && events.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).map((event) => (
               <div key={event.id} className="mb-4">
                 <List.Root onDoubleClick={() => onDetailsDiologOpen(event.id)}>
                   <List.Ul>
                     <List.Item className="max-w-96">
-                      <List.ItemBody className="text-lg sm:text-2xl text-[#5A5A66] leading-8">{event.title}</List.ItemBody>
+                      <List.ItemBody className="text-base sm:text-2xl text-[#5A5A66] leading-8">{event.title}</List.ItemBody>
                     </List.Item>
                     <List.Item>
                       <List.ItemHeader>Event Type</List.ItemHeader>
@@ -109,18 +109,19 @@ export function Dashboard() {
                       <List.ItemHeader>Date created</List.ItemHeader>
                       <List.ItemBody>{formatterDate.formatterDate(event.createdAt)}</List.ItemBody>
                     </List.Item>
-                    <List.Item className="flex gap-4 flex-wrap">
-                      <span className="sm:flex gap-4 self-center">
+                    <List.Item className="flex gap-1 sm:gap-4 flex-wrap">
+                      <span className="sm:flex gap-1 sm:gap-4 self-center">
                         <button type="button" className="group">
-                          <Trash onClick={() => openDeleteEventModalOpen(event.id)} className="size-10 group-hover:text-red-700 group-hover:ring-red-700 duration-150 transition-colors ring-2 ring-zinc-200 p-2 rounded-lg" />
+                          <Trash onClick={() => openDeleteEventModalOpen(event.id)}
+                            className="size-8 sm:size-10 group-hover:text-red-700 group-hover:ring-red-700 duration-150 transition-colors ring-2 ring-zinc-200 p-2 rounded-lg" />
                         </button>
                         <button type="button" className="group">
                           <ReceiptText
                             onClick={() => onDetailsDiologOpen(event.id)}
-                            className="size-10 group-hover:text-blue-700 group-hover:ring-blue-700 duration-150 transition-colors ring-2 ring-zinc-200 p-2 rounded-lg" />
+                            className="size-8 sm:size-10 group-hover:text-blue-700 group-hover:ring-blue-700 duration-150 transition-colors ring-2 ring-zinc-200 p-2 rounded-lg" />
                         </button>
                         <Link to={`/events/${event.id}`} className="group">
-                          <MailPlus className="size-10 hover:text-blue-500 duration-150 transition-colors ring-2 ring-zinc-200 p-2 rounded-lg" />
+                          <MailPlus className="size-8 sm:size-10 hover:text-blue-500 duration-150 transition-colors ring-2 ring-zinc-200 p-2 rounded-lg" />
                         </Link>
                       </span>
                     </List.Item>

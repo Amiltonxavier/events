@@ -1,9 +1,9 @@
-import { ComponentProps } from 'react'
+import type { ComponentProps } from 'react'
 
 type ItemHeaderProps = ComponentProps<'span'>
 
-export function ItemHeader({...props}: ItemHeaderProps) {
+export function ItemHeader({ ...props }: ItemHeaderProps) {
   return (
-    <span {...props} className='font-semibold block text-xs text-left uppercase leading-6 text-[#BFBFCC] flex-shrink-0'/>
+    <span {...props} className='font-semibold block text-xs text-left uppercase leading-2 sm:leading-6 text-[#BFBFCC] flex-shrink-0' />
   )
 }

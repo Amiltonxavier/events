@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { useEvents } from "../context"
 import { Layout } from "../layout"
 import { TableCell } from "../components/table/table-cell"
@@ -70,9 +70,11 @@ export function Invited() {
         }
         metrics={Metrics}
       >
-        <div className="px-8 flex flex-col gap-6">
+        <div className="flex flex-col gap-2 sm:gap-6">
           <div className="flex justify-between items-center space-y-4">
-            <a href="/"><ArrowLeft className="hover:scale-125 duration-200 size-8 border-4 border-zinc-600 rounded-full hover:text-blue-500 hover:border-blue-500 hover:ring-2" /></a>
+            <Link to="/">
+              <ArrowLeft className="hover:scale-125 duration-200 size-8 border-4 border-zinc-600 rounded-full hover:text-blue-500 hover:border-blue-500 hover:ring-2" />
+            </Link>
             <button
               type="button"
               disabled={isEventOver}
@@ -84,7 +86,7 @@ export function Invited() {
           </div>
           <section className="bg-white p-4 shadow-md rounded-md">
             <div className="text-gray-100">
-              <Table>
+              <Table className="table-auto">
                 <thead>
                   <tr className="border-b border-stone-200">
                     <TableHeader>id</TableHeader>
