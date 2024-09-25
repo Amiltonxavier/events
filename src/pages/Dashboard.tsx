@@ -89,7 +89,7 @@ export function Dashboard() {
                 <List.Root onDoubleClick={() => onDetailsDiologOpen(event.id)}>
                   <List.Ul>
                     <List.Item className="max-w-96">
-                      <List.ItemBody className="text-base sm:text-2xl text-[#5A5A66] leading-8">{event.title}</List.ItemBody>
+                      <List.ItemBody className="text-base sm:text-2xl text-gray-dark leading-8">{event.title}</List.ItemBody>
                     </List.Item>
                     <List.Item>
                       <List.ItemHeader>Event Type</List.ItemHeader>

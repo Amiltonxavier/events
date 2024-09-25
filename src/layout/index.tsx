@@ -1,6 +1,9 @@
 
-import type { ComponentProps, ReactNode } from "react"
+import { useState, type ComponentProps, type ReactNode } from "react"
 import { Link } from "react-router-dom"
+import { DialogCreatUser } from "../components/Dialog/user/Create"
+import { useUser } from "../context/user"
+import { User } from "lucide-react"
 
 type Metrics = {
   title: string,
@@ -14,7 +17,16 @@ type LayoutProps = ComponentProps<'main'> & {
 }
 
 export function Layout({ children, sectionButton, metrics }: LayoutProps) {
+  const { user } = useUser()
+  const [isUserDialogOpen, setIsUserDialogOpen] = useState(false);
 
+  function openUserDialog() {
+    setIsUserDialogOpen(true)
+  }
+
+  function closeUserDialog() {
+    setIsUserDialogOpen(false)
+  }
   return (
     <main className='w-full min-h-screen bg-gray-200 text-zinc-800'>
       <section className="w-full h-full sm:h-64 bg-[#41414C] px-8">
@@ -26,11 +38,17 @@ export function Layout({ children, sectionButton, metrics }: LayoutProps) {
               </Link>
             </h1>
             <div className="flex items-center gap-2">
-              <span className="flex flex-wrap flex-col">
-                <h5 className="font-semibold sm:font-bold text-white text-lg sm:text-xl">John Due</h5>
-                <span className="text-zinc-300">View profile</span>
+              <span className="flex flex-wrap flex-col items-end">
+                <h5 className="font-semibold sm:font-bold text-white text-lg sm:text-xl">
+                  {user?.fullname ?? 'John Due'}
+                </h5>
+                <button type="button" onClick={openUserDialog} className="text-zinc-300">View profile</button>
               </span>
-              <img className="ring-2 ring-blue-500 size-14 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
+              {
+                user?.url ? <img className="ring-2 ring-blue-500 size-14 rounded-full"
+                  src={user?.url} alt="" /> : <User className="size-20 rounded-full p-4 text-stone-50 bg-zinc-300" />
+              }
+
             </div>
           </div>
         </div>
@@ -54,6 +72,7 @@ export function Layout({ children, sectionButton, metrics }: LayoutProps) {
       <div className="w-full flex flex-col gap-8 px-2 sm:px-16">
         {children}
       </div>
+      {isUserDialogOpen && <DialogCreatUser onClose={closeUserDialog} />}
     </main>
   )
 }

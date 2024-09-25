@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      colors: {
+        'gray-dark': '#5A5A66'
+      },
       gridTemplateColumns: {
         'custom': '30% 25% 25% 25% 20% 5%'
       },

@@ -17,8 +17,7 @@ import { Helmet } from "react-helmet"
 export function Invited() {
   const { events } = useEvents()
   const { id } = useParams()
-  const singleEvents: FullEventSchemaDTO = events.find((event) => event.id === id)!
-  console.log(singleEvents)
+  const singleEvents = events.find((event) => event.id === id)!
   const [isInvitedOpen, setInvitedOpen] = useState(false)
   const [isDetailsEventsOpen, setIsDetailsEventsOpen] = useState(false);
 
@@ -86,14 +85,14 @@ export function Invited() {
           </div>
           <section className="bg-white p-4 shadow-md rounded-md">
             <div className="text-gray-100">
-              <Table className="table-auto">
+              <Table className="w-full">
                 <thead>
                   <tr className="border-b border-stone-200">
-                    <TableHeader>id</TableHeader>
-                    <TableHeader><Mail className="size-4 w-full" />E-mail</TableHeader>
-                    <TableHeader><Phone className="size-4 w-full inline-flex items-center gap-2" /> Phone Number</TableHeader>
-                    <TableHeader><Users className="size-4 w-full inline-flex items-center gap-2" /> Amount of People</TableHeader>
-                    <TableHeader><Calendar className="size-4 w-full inline-flex items-center gap-2" />Date created</TableHeader>
+                    <TableHeader> Id</TableHeader>
+                    <TableHeader><Mail className="size-4" />E-mail</TableHeader>
+                    <TableHeader><Phone className="size-4" /> Phone Number</TableHeader>
+                    <TableHeader><Users className="size-4" /> Amount of People</TableHeader>
+                    <TableHeader><Calendar className="size-4" />Date created</TableHeader>
                   </tr>
                 </thead>
                 <tbody>

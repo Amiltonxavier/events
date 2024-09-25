@@ -85,7 +85,7 @@ export function DiologCreatInvited({ onClose, eventID }: DiologCreatEvetnsProps)
               />
             </Input.Wrapper>
             {
-              errors.email && <span className="text-sm text-red-600">{errors.email.message}</span>
+              errors.email && <span className="text-sm text-rose-600">{errors.email.message}</span>
             }
           </Root>
           <div className="grid grid-cols-2 gap-2">
@@ -106,7 +106,7 @@ export function DiologCreatInvited({ onClose, eventID }: DiologCreatEvetnsProps)
                 />
               </Input.Wrapper>
               {
-                errors.amount && <span className="text-sm text-red-600">{errors.amount.message}</span>
+                errors.amount && <span className="text-sm text-rose-600">{errors.amount.message}</span>
               }
             </Root>
             <Root>
@@ -123,7 +123,7 @@ export function DiologCreatInvited({ onClose, eventID }: DiologCreatEvetnsProps)
                   {...register('phone')}
                 />
               </Input.Wrapper>
-              {errors.phone && <span className="text-sm text-red-600">{errors.phone.message}</span>}
+              {errors.phone && <span className="text-sm text-rose-600">{errors.phone.message}</span>}
             </Root>
           </div>
           <div className="mt-4">

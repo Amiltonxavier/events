@@ -54,7 +54,7 @@ export function DiologCreatEvetns({ onClose }: DiologCreatEvetnsProps) {
                 className="focus-within:ring-2 ring-blue-500 placeholder:italic"
               />
             </Input.Wrapper>
-            {errors.title && <span className="text-sm text-red-600">{errors.title.message}</span>}
+            {errors.title && <span className="text-sm text-rose-600">{errors.title.message}</span>}
           </Root>
           <Root>
             <Label>Event Type</Label>
@@ -66,7 +66,7 @@ export function DiologCreatEvetns({ onClose }: DiologCreatEvetnsProps) {
                 </Select.Option>
               ))}
             </Select.Trigger>
-            {errors.type && <span className="text-sm text-red-600">{errors.type.message}</span>}
+            {errors.type && <span className="text-sm text-rose-600">{errors.type.message}</span>}
           </Root>
           <div className="grid sm:grid-cols-2 gap-2">
             <Root>
@@ -81,7 +81,7 @@ export function DiologCreatEvetns({ onClose }: DiologCreatEvetnsProps) {
                   {...register('amount')}
                 />
               </Input.Wrapper>
-              {errors.amount && <span className="text-sm text-red-600">{errors.amount.message}</span>}
+              {errors.amount && <span className="text-sm text-rose-600">{errors.amount.message}</span>}
             </Root>
             <Root>
               <Label>Event Location</Label>
@@ -93,7 +93,7 @@ export function DiologCreatEvetns({ onClose }: DiologCreatEvetnsProps) {
                   className="placeholder:italic"
                 />
               </Input.Wrapper>
-              {errors.local && <span className="text-sm text-red-600">{errors.local.message}</span>}
+              {errors.local && <span className="text-sm text-rose-600">{errors.local.message}</span>}
             </Root>
           </div>
           <div className="grid sm:grid-cols-2 gap-2">
@@ -106,7 +106,7 @@ export function DiologCreatEvetns({ onClose }: DiologCreatEvetnsProps) {
                   className="placeholder:italic"
                 />
               </Input.Wrapper>
-              {errors.date && <span className="text-sm text-red-600">{errors.date.message}</span>}
+              {errors.date && <span className="text-sm text-rose-600">{errors.date.message}</span>}
             </Root>
             <Root>
               <Label>Event End Date</Label>
@@ -117,7 +117,7 @@ export function DiologCreatEvetns({ onClose }: DiologCreatEvetnsProps) {
                   className="placeholder:italic"
                 />
               </Input.Wrapper>
-              {errors.durantion && <span className="text-sm text-red-600">{errors.durantion.message}</span>}
+              {errors.durantion && <span className="text-sm text-rose-600">{errors.durantion.message}</span>}
             </Root>
           </div>
           <div className="mt-4">
